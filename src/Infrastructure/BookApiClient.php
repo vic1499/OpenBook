@@ -84,10 +84,10 @@ class BookApiClient
                 }
             }
 
-            // 4️⃣ Cover
+           
             $coverUrl = $bookInfo['cover']['medium'] ?? null;
 
-            // 5️⃣ Autores
+         
             $authors = array_map(fn($a) => $a['name'], $bookInfo['authors'] ?? []);
 
             return [

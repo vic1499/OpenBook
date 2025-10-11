@@ -48,3 +48,24 @@ Login de usuario: public/index.php
 Gestión de libros: desde la interfaz principal, puedes crear, listar, actualizar y eliminar libros.
 
 CSRF token incluido en todos los formularios para mayor seguridad.
+
+## API
+
+La aplicación incluye los siguientes endpoints, accesibles vía `api.php`:
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| POST   | /register           | Registrar un nuevo usuario |
+| POST   | /login              | Iniciar sesión |
+| POST   | /logout             | Cerrar sesión |
+| GET    | /books              | Listar todos los libros |
+| GET    | /books/search?q=... | Buscar libros por título o autor |
+| POST   | /books/create       | Crear un libro (requiere `title`, `author`, `isbn`) |
+| POST   | /books/update       | Actualizar un libro existente (requiere `id`) |
+| DELETE / POST | /books/delete  | Eliminar un libro (requiere `id`) |
+| GET    | /books/{id}         | Obtener un libro por ID |
+
+> Todos los endpoints requieren envío del token CSRF para seguridad.  
+> Las descripciones de los libros se obtienen directamente de la Open Library API (en inglés)
+
+

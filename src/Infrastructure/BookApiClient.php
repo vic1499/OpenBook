@@ -41,7 +41,7 @@ class BookApiClient
         try {
             $this->checkRateLimit();
 
-            // 1️⃣ Llamada principal (api/books)
+            // Llamada principal (api/books)
             $response = $this->httpClient->get('api/books', [
                 'query' => [
                     'bibkeys' => "ISBN:$isbn",
@@ -56,13 +56,13 @@ class BookApiClient
 
             $bookInfo = $data[$key];
 
-            // 2️⃣ Descripción: primero api/books
+            // Descripción: primero api/books
             $description = $bookInfo['description']['value']
                 ?? $bookInfo['description']
                 ?? $bookInfo['notes']
                 ?? null;
 
-            // 3️⃣ Si no hay, fallback a /isbn/{isbn}.json
+            //  Si no hay, fallback a /isbn/{isbn}.json
             if (!$description) {
                 $editionResponse = $this->httpClient->get("isbn/{$isbn}.json");
                 $editionData = json_decode($editionResponse->getBody()->getContents(), true);

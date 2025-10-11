@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>📚 OpenBook CRUD</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+    <h1>📖 Bienvenido al Sistema OpenBook</h1>
+
+    <div class="search-box">
+        <h2>Buscar libros</h2>
+        <input type="text" class="search" id="searchTerm" onkeyup="searchLive()" placeholder=" Busca por título o autor...">
+    </div>
+
+    <form id="createForm">
+        <h2>Introduzca los datos del libro:</h2>
+        <input type="text" placeholder="Título" id="title" required>
+        <input type="text" placeholder="Autor" id="author" required>
+        <input type="text" placeholder="ISBN" id="isbn" required>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <h2>Lista de libros</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>ISBN</th>
+                <th>Portada</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="booksList"></tbody>
+    </table>
+
+ </body>
+
+</html>

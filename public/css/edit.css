@@ -1,0 +1,88 @@
+/* General */
+body {
+
+    /* espacio para la cabecera */
+    font-family: Arial;
+    margin: 40px;
+    background: #f4f6f8;
+
+}
+
+/* Cabecera tipo index */
+.header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+
+
+
+/* Contenedor */
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 100px auto 50px;
+    /* margen superior para la cabecera */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulario */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#coverContainer img {
+    max-width: 300px;
+    display: block;
+    margin: 15px auto;
+    border-radius: 8px;
+}

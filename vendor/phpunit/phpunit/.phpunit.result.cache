@@ -1,0 +1,1 @@
+{"version":2,"defects":{"OpenBook\\Tests\\BookRepositoryTest::testSaveAndFindById":8,"OpenBook\\Tests\\BookRepositoryTest::testFindAll":8},"times":{"OpenBook\\Tests\\BookServiceTest::testCreateBookWithApiData":0.005,"OpenBook\\Tests\\BookRepositoryTest::testSaveAndFindById":0.015,"OpenBook\\Tests\\BookRepositoryTest::testFindAll":0.008}}

@@ -1,0 +1,22 @@
+{
+    "name": "open-book/open-book",
+    "description": "A native PHP project for managing books with CRUD operations, Open Library API integration, and SOLID architecture principles.",
+    "autoload": {
+        "psr-4": {
+            "OpenBook\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "vic1499",
+            "email": "victoriaberroteran24@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.10",
+        "firebase/php-jwt": "^6.11"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.4"
+    }
+}

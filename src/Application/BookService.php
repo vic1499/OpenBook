@@ -36,9 +36,17 @@ class BookService
 
 
 
-    public function listBooks()
+    public function listBooks(int $page = 1, int $limit = 5)
     {
-        return $this->repository->findAll();
+        $books = $this->repository->findPaginated($page, $limit);
+        $total = $this->repository->countTotal();
+
+        return [
+            'books' => $books,
+            'totalPages' => ceil($total / $limit),
+            'currentPage' => $page,
+            'totalCount' => $total
+        ];
     }
 
     public function searchBooks(string $query)

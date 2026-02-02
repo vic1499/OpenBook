@@ -52,7 +52,8 @@ class BookApiClient
 
             $data = json_decode($response->getBody()->getContents(), true);
             $key = "ISBN:$isbn";
-            if (!isset($data[$key])) return null;
+            if (!isset($data[$key]))
+                return null;
 
             $bookInfo = $data[$key];
 
@@ -84,10 +85,10 @@ class BookApiClient
                 }
             }
 
-           
+
             $coverUrl = $bookInfo['cover']['medium'] ?? null;
 
-         
+
             $authors = array_map(fn($a) => $a['name'], $bookInfo['authors'] ?? []);
 
             return [
@@ -97,6 +98,30 @@ class BookApiClient
                 'authors' => $authors
             ];
 
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+    public function fetchDetailedGoogleBooksData(string $isbn): ?array
+    {
+        try {
+            $client = new Client(['timeout' => 5.0]);
+            $response = $client->get('https://www.googleapis.com/books/v1/volumes', [
+                'query' => ['q' => "isbn:$isbn"]
+            ]);
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            if (empty($data['items']))
+                return null;
+
+            $volumeInfo = $data['items'][0]['volumeInfo'];
+            return [
+                'description' => $volumeInfo['description'] ?? 'No hay sinopsis disponible.',
+                'publishedDate' => $volumeInfo['publishedDate'] ?? 'Desconocida',
+                'coverUrl' => ($volumeInfo['imageLinks']['thumbnail'] ?? null),
+                'title' => $volumeInfo['title'] ?? null,
+                'authors' => $volumeInfo['authors'] ?? []
+            ];
         } catch (\Exception $e) {
             return null;
         }

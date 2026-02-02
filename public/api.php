@@ -38,9 +38,11 @@ header('Content-Type: application/json');
 
 // ------------------ ENDPOINTS ------------------ //
 
-// Listar todos los libros
+// Listar libros con paginación
 if ($uri === '/books' && $method === 'GET') {
-    echo json_encode($service->listBooks());
+    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+    $limit = isset($_GET['limit']) ? (int) $_GET['limit'] : 5;
+    echo json_encode($service->listBooks($page, $limit));
     exit;
 }
 
@@ -128,8 +130,8 @@ if ($uri === '/books/create' && $method === 'POST') {
 
 // Actualizar un libro
 if ($uri === '/books/update' && $method === 'POST') {
-      //validateCsrf();
-        $data = json_decode(file_get_contents('php://input'), true);
+    //validateCsrf();
+    $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'] ?? null;
 
     if (!$id) {

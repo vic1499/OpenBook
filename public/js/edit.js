@@ -33,8 +33,8 @@ async function loadBook() {
         isbnInput.value = book.isbn ?? '';
         descriptionInput.value = book.description ?? '';
 
-        coverContainer.innerHTML = book.coverUrl 
-            ? `<img src="${escapeHtml(book.coverUrl)}" alt="Portada">` 
+        coverContainer.innerHTML = book.coverUrl
+            ? `<img src="${escapeHtml(book.coverUrl)}" alt="Portada">`
             : '';
     } catch (err) {
         console.error('Error cargando libro:', err);
@@ -77,6 +77,14 @@ form.addEventListener('submit', async e => {
         alert('Error al actualizar libro');
     }
 });
+
+// Botón Sinapsis PDF
+const btnSinapsis = document.getElementById('btnSinapsis');
+if (btnSinapsis) {
+    btnSinapsis.addEventListener('click', () => {
+        window.open('generate-synopsis.php?id=' + bookId, '_blank');
+    });
+}
 
 // Inicializar
 loadBook();

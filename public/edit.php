@@ -37,6 +37,11 @@ if (empty($_SESSION['csrf_token'])) {
                             <div class="card">
                                 <div class="card-header align-items-center d-flex">
                                     <h4 class="card-title mb-0 flex-grow-1">Formulario de Edición</h4>
+                                    <div class="flex-shrink-0">
+                                        <button type="button" class="btn btn-soft-info btn-sm" id="btnSinapsis">
+                                            <i class="bi bi-file-earmark-pdf align-middle"></i> Generar Sinopsis PDF
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">

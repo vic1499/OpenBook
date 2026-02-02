@@ -56,6 +56,22 @@ class BookRepository
         return array_map(fn($r) => new Book(...$r), $rows);
     }
 
+    public function findPaginated(int $page, int $limit): array
+    {
+        $offset = ($page - 1) * $limit;
+        $stmt = $this->pdo->prepare("SELECT * FROM books LIMIT :limit OFFSET :offset");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($r) => new Book(...$r), $rows);
+    }
+
+    public function countTotal(): int
+    {
+        return (int) $this->pdo->query("SELECT COUNT(*) FROM books")->fetchColumn();
+    }
+
     public function findById(int $id): ?Book
     {
         $stmt = $this->pdo->prepare("SELECT * FROM books WHERE id = :id");

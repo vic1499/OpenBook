@@ -12,7 +12,7 @@ class BookRepository
 
     public function __construct()
     {
-     
+
         $this->pdo = Connection::getInstance();
         $this->init();
     }
@@ -74,7 +74,8 @@ class BookRepository
             $params[":$key"] = $value;
         }
 
-        if (empty($fields)) return false;
+        if (empty($fields))
+            return false;
 
         $sql = "UPDATE books SET " . implode(', ', $fields) . " WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
@@ -84,7 +85,7 @@ class BookRepository
     public function delete(int $id): bool
     {
         $stmt = $this->pdo->prepare("DELETE FROM books WHERE id = :id");
-        return $stmt->execute([':id' => $id]);  
+        return $stmt->execute([':id' => $id]);
     }
 
     public function getBookById(int $id): ?array
@@ -97,7 +98,7 @@ class BookRepository
 
     public function search(string $term): array
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM books WHERE title LIKE :term OR author LIKE :term");
+        $stmt = $this->pdo->prepare("SELECT * FROM books WHERE title LIKE :term OR author LIKE :term OR isbn LIKE :term");
         $stmt->execute(['term' => "%$term%"]);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
